@@ -33,6 +33,7 @@ public enum ConnectionType {
   NULL_TYPE(0),
   ICEBERG_REST(1),
   HADOOP(2),
+  HIVE(3),
   ;
 
   private static final ConnectionType[] REVERSE_MAPPING_ARRAY;
