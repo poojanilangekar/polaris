@@ -55,6 +55,7 @@ import org.apache.iceberg.exceptions.CommitFailedException;
 import org.apache.iceberg.exceptions.ForbiddenException;
 import org.apache.iceberg.exceptions.NoSuchTableException;
 import org.apache.iceberg.hadoop.HadoopCatalog;
+import org.apache.iceberg.hive.HiveCatalog;
 import org.apache.iceberg.rest.HTTPClient;
 import org.apache.iceberg.rest.RESTCatalog;
 import org.apache.iceberg.rest.credentials.ImmutableCredential;
@@ -79,6 +80,7 @@ import org.apache.polaris.core.config.FeatureConfiguration;
 import org.apache.polaris.core.connection.ConnectionConfigInfoDpo;
 import org.apache.polaris.core.connection.ConnectionType;
 import org.apache.polaris.core.connection.hadoop.HadoopConnectionConfigInfoDpo;
+import org.apache.polaris.core.connection.hive.HiveConnectionConfigInfoDpo;
 import org.apache.polaris.core.connection.iceberg.IcebergRestConnectionConfigInfoDpo;
 import org.apache.polaris.core.context.CallContext;
 import org.apache.polaris.core.entity.CatalogEntity;
@@ -235,6 +237,12 @@ public class IcebergCatalogHandler extends CatalogHandler implements AutoCloseab
           federatedCatalog = new HadoopCatalog();
           federatedCatalog.initialize(
               ((HadoopConnectionConfigInfoDpo) connectionConfigInfoDpo).getWarehouse(),
+              connectionConfigInfoDpo.asIcebergCatalogProperties(getUserSecretsManager()));
+          break;
+        case HIVE:
+          federatedCatalog = new HiveCatalog();
+          federatedCatalog.initialize(
+              ((HiveConnectionConfigInfoDpo) connectionConfigInfoDpo).getWarehouse(),
               connectionConfigInfoDpo.asIcebergCatalogProperties(getUserSecretsManager()));
           break;
         default:
