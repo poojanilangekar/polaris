@@ -76,6 +76,7 @@ dependencies {
   }
 
   implementation("org.apache.iceberg:iceberg-core:${icebergVersion}")
+  implementation("org.apache.iceberg:iceberg-hive-metastore:${icebergVersion}")
 
   implementation(
     "org.apache.iceberg:iceberg-spark-runtime-${sparkMajorVersion}_${scalaVersion}:${icebergVersion}"

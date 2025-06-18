@@ -33,6 +33,7 @@ dependencies {
   implementation(platform(libs.iceberg.bom))
   implementation("org.apache.iceberg:iceberg-api")
   implementation("org.apache.iceberg:iceberg-core")
+  implementation("org.apache.iceberg:iceberg-hive-metastore")
   implementation("org.apache.iceberg:iceberg-aws")
 
   implementation(libs.hadoop.common) {
@@ -116,6 +117,7 @@ dependencies {
   testFixturesImplementation("org.apache.iceberg:iceberg-api")
   testFixturesImplementation("org.apache.iceberg:iceberg-core")
   testFixturesImplementation("org.apache.iceberg:iceberg-aws")
+  testFixturesImplementation("org.apache.iceberg:iceberg-hive-metastore")
 
   testFixturesImplementation(platform(libs.google.cloud.storage.bom))
   testFixturesImplementation("com.google.cloud:google-cloud-storage")
