@@ -40,7 +40,6 @@ dependencies {
   implementation("org.apache.iceberg:iceberg-api")
   implementation("org.apache.iceberg:iceberg-core")
   implementation("org.apache.iceberg:iceberg-aws")
-  implementation("org.apache.iceberg:iceberg-hive-metastore")
 
   implementation(platform(libs.opentelemetry.bom))
 
@@ -131,9 +130,6 @@ dependencies {
 
   testImplementation("org.apache.iceberg:iceberg-api:${libs.versions.iceberg.get()}:tests")
   testImplementation("org.apache.iceberg:iceberg-core:${libs.versions.iceberg.get()}:tests")
-  testImplementation(
-    "org.apache.iceberg:iceberg-hive-metastore:${libs.versions.iceberg.get()}:tests"
-  )
 
   testImplementation("software.amazon.awssdk:glue")
   testImplementation("software.amazon.awssdk:kms")

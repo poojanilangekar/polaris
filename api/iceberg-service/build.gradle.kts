@@ -31,7 +31,6 @@ dependencies {
   implementation(platform(libs.iceberg.bom))
   implementation("org.apache.iceberg:iceberg-api")
   implementation("org.apache.iceberg:iceberg-core")
-  implementation("org.apache.iceberg:iceberg-hive-metastore")
 
   implementation(libs.jakarta.annotation.api)
   implementation(libs.jakarta.inject.api)

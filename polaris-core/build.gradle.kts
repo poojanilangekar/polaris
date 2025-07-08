@@ -28,7 +28,6 @@ dependencies {
   implementation(platform(libs.iceberg.bom))
   implementation("org.apache.iceberg:iceberg-api")
   implementation("org.apache.iceberg:iceberg-core")
-  implementation("org.apache.iceberg:iceberg-hive-metastore")
   constraints {
     implementation("io.airlift:aircompressor:2.0.2") { because("Vulnerability detected in 0.25") }
   }
