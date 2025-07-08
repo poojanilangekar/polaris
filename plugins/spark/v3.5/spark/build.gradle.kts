@@ -45,7 +45,46 @@ val scalaLibraryVersion =
 dependencies {
   // TODO: extract a polaris-rest module as a thin layer for
   //  client to depends on.
-  implementation(project(":polaris-core")) { isTransitive = false }
+  implementation(project(":polaris-api-iceberg-service")) {
+    // exclude the iceberg dependencies, use the ones pulled
+    // by iceberg-core
+    exclude("org.apache.iceberg", "*")
+    // exclude all cloud and quarkus specific dependencies to avoid
+    // running into problems with signature files.
+    exclude("com.azure", "*")
+    exclude("software.amazon.awssdk", "*")
+    exclude("com.google.cloud", "*")
+    exclude("io.airlift", "*")
+    exclude("io.smallrye", "*")
+    exclude("io.smallrye.common", "*")
+    exclude("io.swagger", "*")
+    exclude("org.apache.commons", "*")
+  }
+  implementation(project(":polaris-api-catalog-service")) {
+    exclude("org.apache.iceberg", "*")
+    exclude("com.azure", "*")
+    exclude("software.amazon.awssdk", "*")
+    exclude("com.google.cloud", "*")
+    exclude("io.airlift", "*")
+    exclude("io.smallrye", "*")
+    exclude("io.smallrye.common", "*")
+    exclude("io.swagger", "*")
+    exclude("org.apache.commons", "*")
+  }
+  implementation(project(":polaris-core")) {
+    exclude("org.apache.iceberg", "*")
+    exclude("com.azure", "*")
+    exclude("software.amazon.awssdk", "*")
+    exclude("com.google.cloud", "*")
+    exclude("io.airlift", "*")
+    exclude("io.smallrye", "*")
+    exclude("io.smallrye.common", "*")
+    exclude("io.swagger", "*")
+    exclude("org.apache.commons", "*")
+  }
+
+  implementation("org.apache.iceberg:iceberg-core:${icebergVersion}")
+  implementation("org.apache.iceberg:iceberg-hive-metastore:${icebergVersion}")
 
   implementation(
     "org.apache.iceberg:iceberg-spark-runtime-${sparkMajorVersion}_${scalaVersion}:${icebergVersion}"
