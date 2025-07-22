@@ -204,6 +204,11 @@ EOF
     echo "Success!"
 fi
 
+
+# Kill any running metastore server. 
+echo "Killing any running metastore server..."
+lsof -i :9083 | grep LISTEN | awk '{print $2}' | xargs kill -9
+
 if [ "$1" != "clean_metastore" ]; then 
     echo "Using existing metastore database..."
 else 
@@ -217,5 +222,5 @@ else
 fi 
 
 echo "Starting metastore server..."
-# Start the metastore server. 
-$HIVE_HOME/bin/hive --skiphadoopversion --skiphbasecp --service metastore
+# Start the metastore server in the background and redirect the output to /tmp/metastore.log 
+$HIVE_HOME/bin/hive --skiphadoopversion --skiphbasecp --service metastore > /tmp/metastore.log 2>&1 &
