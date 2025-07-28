@@ -211,10 +211,9 @@ lsof -i :9083 | grep LISTEN | awk '{print $2}' | xargs kill -9
 
 if [ "$1" != "clean_metastore" ]; then 
     echo "Using existing metastore database..."
-else 
-    echo "Clearing metastore database..."
-    # Clear the metastore database. 
-    rm -rf /tmp/data/hms
+else
+    echo "Deleting metastore database and warehouse..."
+    rm -rf /tmp/data/
 
     echo "Initializing metastore schema..."
     # Initialize the metastore. 
