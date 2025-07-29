@@ -128,7 +128,8 @@ public abstract class ConnectionConfigInfoDpo implements IcebergCatalogPropertie
   protected void validateUri(String uri) {
     try {
       URI uriObj = URI.create(uri);
-      if (connectionTypeCode == ConnectionType.HIVE.getCode() && uriObj.getScheme().equals("thrift")) {
+      if (connectionTypeCode == ConnectionType.HIVE.getCode()
+          && uriObj.getScheme().equals("thrift")) {
         // Hive metastore runs a thrift server.
         return;
       }
