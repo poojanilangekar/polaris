@@ -1607,13 +1607,10 @@ public class AtomicOperationMetaStoreManager extends BaseMetaStoreManager {
             catalogId,
             entityId);
 
-    PolarisStorageConfigurationInfo storageConfigurationInfo =
-        BaseMetaStoreManager.extractStorageConfiguration(callCtx, reloadedEntity.getEntity());
     try {
       AccessConfig accessConfig =
           storageIntegration.getSubscopedCreds(
-              callCtx,
-              storageConfigurationInfo,
+              callCtx.getRealmConfig(),
               allowListOperation,
               allowedReadLocations,
               allowedWriteLocations);
