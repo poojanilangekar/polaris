@@ -40,6 +40,14 @@ dependencies {
   implementation("org.apache.iceberg:iceberg-api")
   implementation("org.apache.iceberg:iceberg-core")
   implementation("org.apache.iceberg:iceberg-aws")
+  implementation("org.apache.iceberg:iceberg-hive-metastore")
+  implementation(libs.hive.metastore) {
+    exclude("org.slf4j", "slf4j-reload4j")
+    exclude("org.slf4j", "slf4j-log4j12")
+    exclude("ch.qos.reload4j", "reload4j")
+    exclude("log4j", "log4j")
+    exclude("org.apache.zookeeper", "zookeeper")
+  }
 
   implementation(platform(libs.opentelemetry.bom))
 
